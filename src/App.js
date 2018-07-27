@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
 import './App.css';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
 
 import MovieCard from './components/MovieCard';
 
-
-const originalMovies=[
-    {id:1, title: 'Star Wars' },
-    {id:2, title: 'Star Trek' },
-    {id:3, title: 'Blade Runner' },
-];
+const styles = {
+  root: {
+    flexGrow: 1,
+  },
+};
 
 class App extends Component {
  state = { movies:[] };
@@ -25,11 +29,18 @@ class App extends Component {
       const {movies}=this.state;
       
     return (
-      <div className="App">
-        {movies.map(movie=> <MovieCard key={movie.id} movie={movie} />)}
-      </div>
+        <div>
+            <AppBar position="fixed">
+                <Toolbar>
+                    <Typography variant="title" color="inherit">Title</Typography>
+                </Toolbar>
+            </AppBar>
+            <div className="App">
+                {movies.map(movie=> <MovieCard key={movie.id} movie={movie}/>)}
+            </div>
+        </div>
     );
   }
 }
 
-export default App;
+export default withStyles(styles)(App);
