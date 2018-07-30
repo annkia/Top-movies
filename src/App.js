@@ -7,6 +7,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 
 import MovieCard from './components/MovieCard';
+import MovieDialog from './components/MovieDialog';
+
 
 const styles = {
   root: {
@@ -15,8 +17,10 @@ const styles = {
 };
 
 class App extends Component {
- state = { movies:[] };
-
+ state = { movies:[], selectedMovie:null };
+    selectMovie=movie=>this.setState({selectedMovie:movie});
+    clearMovie=() =>this.setState({selectedMovie:null});
+        
     async componentDidMount(){
    // setTimeout(()=>
     //    this.setState({movies: originalMovies}), 5000);
@@ -26,7 +30,7 @@ class App extends Component {
     }
 
   render() {
-      const {movies}=this.state;
+      const {movies, selectedMovie}=this.state;
       
     return (
         <div>
@@ -36,8 +40,9 @@ class App extends Component {
                 </Toolbar>
             </AppBar>
             <div className="movies">
-                {movies.map(movie=> <MovieCard key={movie.id} movie={movie}/>)}
+                {movies.map(movie=> <MovieCard key={movie.id} movie={movie} selectMovie={this.selectMovie}/>)}
             </div>
+            <MovieDialog movie={selectedMovie} handleClose={this.clearMovie}/>
         </div>
     );
   }
