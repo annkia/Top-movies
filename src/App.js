@@ -36,7 +36,7 @@ class App extends Component {
         <div>
             <AppBar position="fixed">
                 <Toolbar>
-                    <Typography variant="title" color="inherit">Title</Typography>
+                    <Typography variant="title" color="inherit">Top movies</Typography>
                 </Toolbar>
             </AppBar>
             <div className="movies">
